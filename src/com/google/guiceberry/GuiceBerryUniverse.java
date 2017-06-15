@@ -59,6 +59,7 @@ class GuiceBerryUniverse {
    */
   private static final Class<?>[] REQUIRED_BINDINGS = {
       TestScope.class,
+      TestScopeExtender.class,
       TearDownAccepter.class,
       ToTearDown.class,
       TestId.class

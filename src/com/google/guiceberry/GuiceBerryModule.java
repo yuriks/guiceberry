@@ -19,8 +19,6 @@ package com.google.guiceberry;
 import com.google.common.testing.TearDown;
 import com.google.common.testing.TearDownAccepter;
 import com.google.common.testing.TearDownStack;
-import com.google.guiceberry.GuiceBerryUniverse;
-import com.google.guiceberry.TestScope;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scope;
@@ -85,6 +83,11 @@ public class GuiceBerryModule extends AbstractModule {
   @TestScoped
   TestId getTestId() {
     return universe.currentTestDescriptionThreadLocal.get().getTestId();
+  }
+
+  @Provides
+  TestScopeExtender getTestScopeExtender() {
+    return new TestScopeExtender(universe, universe.currentTestDescriptionThreadLocal.get());
   }
   
   interface ToTearDown extends TearDownAccepter {
